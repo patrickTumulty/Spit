@@ -114,8 +114,6 @@ void MidiProcessor::addNotesToPool(String noteName)
         this->mSelectedNotesFullRange->add(current_note_value);
         current_note_value += 12;
     }
-//    this->mRandomNumHighValue = this->mAvailableMidiNotes->size();
-    
 }
 
 void MidiProcessor::removeNotesFromPool(String noteName)
@@ -127,7 +125,6 @@ void MidiProcessor::removeNotesFromPool(String noteName)
         this->mSelectedNotesFullRange->add(current_note_value);
         current_note_value += 12;
     }
-//    this->mRandomNumHighValue = this->mAvailableMidiNotes->size();
 }
 
 void MidiProcessor::prepareToPlay()
@@ -163,42 +160,34 @@ void MidiProcessor::updateRange()
         {
             if (currentNote <= this->mRangeLow || currentNote > this->mRangeHigh)
             {
-                DBG("166");
                 if (this->mAvailableMidiNotes->contains(currentNote))
                 {
                     this->mAvailableMidiNotes->removeValue(currentNote);
                 }
-//                this->mRandomNumHighValue = this->mAvailableMidiNotes->size();
             }
             else
             {
-                DBG("174");
                 if (this->mAvailableMidiNotes->contains(currentNote) == false)
                 {
                     this->mAvailableMidiNotes->add(currentNote);
                 }
-//                this->mRandomNumHighValue = this->mAvailableMidiNotes->size();
             }
         }
         else if (this->mRangeLow > this->mRangeHigh)
         {
             if (currentNote <= this->mRangeHigh || currentNote > this->mRangeLow)
             {
-                DBG("185");
                 if (this->mAvailableMidiNotes->contains(currentNote) == false)
                 {
                     this->mAvailableMidiNotes->add(currentNote);
                 }
-//                this->mRandomNumHighValue = this->mAvailableMidiNotes->size();
             }
             else
             {
-                DBG("194");
                 if (this->mAvailableMidiNotes->contains(currentNote))
                 {
                     this->mAvailableMidiNotes->removeValue(currentNote);
                 }
-//                this->mRandomNumHighValue = this->mAvailableMidiNotes->size();
             }
         }
     }

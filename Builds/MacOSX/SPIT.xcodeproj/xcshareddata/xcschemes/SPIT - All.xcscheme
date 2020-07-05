@@ -42,7 +42,7 @@
       allowLocationSimulation = "YES">
       <PathRunnable
          runnableDebuggingMode = "0"
-         FilePath = "/Applications/Studio One 3.app">
+         FilePath = "/Applications/AudioPluginHost.app">
       </PathRunnable>
    </LaunchAction>
    <ProfileAction

@@ -94,55 +94,39 @@ SpitAudioProcessor::SpitAudioProcessor() : AudioProcessor (BusesProperties()), p
                                     109,
                                     109
                                     ),
-    std::make_unique<AudioParameterChoice>("tempo", "Tempo", StringArray {
-            "1/1",
-            "1/2",
-            "1/4",
-            "1/8",
-            "1/16",
-            "1/32"}, 2) 
+    std::make_unique<AudioParameterChoice>("tempo",
+                                           "Tempo",
+                                           StringArray {
+                                            "1/1",
+                                            "1/2",
+                                            "1/4",
+                                            "1/8",
+                                            "1/16",
+                                            "1/32"},
+                                            2)
 })
 {
     midiProcessor = new MidiProcessor();
     
-//    cState      = parameters.getRawParameterValue("c");
-//    cSharpState = parameters.getRawParameterValue("cSharp");
-//    dState      = parameters.getRawParameterValue("d");
-//    dSharpState = parameters.getRawParameterValue("dSharp");
-//    eState      = parameters.getRawParameterValue("e");
-//    fState      = parameters.getRawParameterValue("f");
-//    fSharpState = parameters.getRawParameterValue("fSharp");
-//    gState      = parameters.getRawParameterValue("g");
-//    gSharpState = parameters.getRawParameterValue("gSharp");
-//    aState      = parameters.getRawParameterValue("a");
-//    aSharpState = parameters.getRawParameterValue("aSharp");
-//    bState      = parameters.getRawParameterValue("b");
-//
-//    startState = parameters.getRawParameterValue("start");
-//
-//    rangeHighState = parameters.getRawParameterValue("rangeHigh");
-//    rangeLowState = parameters.getRawParameterValue("rangeLow");
-//
-//    tempoState = parameters.getRawParameterValue("tempo");
     
-    parameters.addParameterListener("c", this);
-    parameters.addParameterListener("cSharp", this);
-    parameters.addParameterListener("d", this);
-    parameters.addParameterListener("dSharp", this);
-    parameters.addParameterListener("e", this);
-    parameters.addParameterListener("f", this);
-    parameters.addParameterListener("fSharp", this);
-    parameters.addParameterListener("g", this);
-    parameters.addParameterListener("gSharp", this);
-    parameters.addParameterListener("a", this);
-    parameters.addParameterListener("aSharp", this);
-    parameters.addParameterListener("b", this);
+    parameters.addParameterListener("c",        this);
+    parameters.addParameterListener("cSharp",   this);
+    parameters.addParameterListener("d",        this);
+    parameters.addParameterListener("dSharp",   this);
+    parameters.addParameterListener("e",        this);
+    parameters.addParameterListener("f",        this);
+    parameters.addParameterListener("fSharp",   this);
+    parameters.addParameterListener("g",        this);
+    parameters.addParameterListener("gSharp",   this);
+    parameters.addParameterListener("a",        this);
+    parameters.addParameterListener("aSharp",   this);
+    parameters.addParameterListener("b",        this);
     
-    parameters.addParameterListener("start", this);
-    parameters.addParameterListener("rangeHigh", this);
+    parameters.addParameterListener("start",    this);
+    parameters.addParameterListener("rangeHigh",this);
     parameters.addParameterListener("rangeLow", this);
     
-    parameters.addParameterListener("tempo", this);
+    parameters.addParameterListener("tempo",    this);
 }
 
 SpitAudioProcessor::~SpitAudioProcessor()
@@ -229,10 +213,7 @@ void SpitAudioProcessor::releaseResources()
 
 void SpitAudioProcessor::parameterChanged(const String &parameterID, float newValue)
 {
-    if (parameterID == "c")
-    {
-        DBG("C");
-    }
+    
     
 }
 
@@ -288,18 +269,25 @@ AudioProcessorEditor* SpitAudioProcessor::createEditor()
 //==============================================================================
 void SpitAudioProcessor::getStateInformation (MemoryBlock& destData)
 {
-    MemoryOutputStream stream(destData, false);
-    parameters.state.writeToStream (stream);
-
+//    MemoryOutputStream stream(destData, false);
+//    parameters.state.writeToStream (stream);
+    auto state = parameters.copyState();
+    std::unique_ptr<XmlElement> xml (state.createXml());
+    copyXmlToBinary (*xml, destData);
 }
 
 void SpitAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
-    ValueTree tree = ValueTree::readFromData (data, sizeInBytes);
-    if (tree.isValid())
-    {
-        parameters.state = tree;
-    }
+//    ValueTree tree = ValueTree::readFromData (data, sizeInBytes);
+//    if (tree.isValid())
+//    {
+//        parameters.state = tree;
+//    }
+    std::unique_ptr<XmlElement> xmlState (getXmlFromBinary (data, sizeInBytes));
+ 
+    if (xmlState.get() != nullptr)
+        if (xmlState->hasTagName (parameters.state.getType()))
+            parameters.replaceState (ValueTree::fromXml (*xmlState));
 }
 
 MidiProcessor * SpitAudioProcessor::getMidiProcessor()
