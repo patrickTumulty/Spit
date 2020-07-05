@@ -441,6 +441,13 @@
 			path = "/Users/ptumulty/Applications/JUCE/modules/juce_audio_basics";
 			sourceTree = "<absolute>";
 		};
+		A8CAE6AE945E39E8F558FCEA = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = JucePluginDefines.h;
+			path = ../../JuceLibraryCode/JucePluginDefines.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		A996A0D06DA5398F7642EFF6 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
@@ -647,6 +654,7 @@
 				77FCAB37ED0BBAE743FDFBCE,
 				0168392E4C9A997C7EE1EA89,
 				6832EAFEB9CAD4DE4C8C51C3,
+				A8CAE6AE945E39E8F558FCEA,
 			);
 			name = "JUCE Library Code";
 			sourceTree = "<group>";
@@ -703,6 +711,26 @@
 			);
 			name = Source;
 			sourceTree = "<group>";
+		};
+		50D6043D7AAA30E22F08E877 = {
+			isa = PBXTargetDependency;
+			target = 376182D4FA78072AD5969F1E;
+		};
+		5E6E504D3633A4439CE0D359 = {
+			isa = PBXTargetDependency;
+			target = 11F2625F838541E16DBBCB5D;
+		};
+		3B1EA698BF8FCE35F4B75827 = {
+			isa = PBXTargetDependency;
+			target = 214EE4CCCDBE8F9E962F4953;
+		};
+		77E418B0B5A8D135BBE0B246 = {
+			isa = PBXTargetDependency;
+			target = 214EE4CCCDBE8F9E962F4953;
+		};
+		BC4D04FF529AD243E92A5E61 = {
+			isa = PBXTargetDependency;
+			target = 214EE4CCCDBE8F9E962F4953;
 		};
 		DEDA12B1CF5BCB0DEC9D16C3 = {
 			isa = XCBuildConfiguration;
@@ -800,7 +828,6 @@
 					"JucePlugin_Build_Standalone=0",
 					"JucePlugin_Build_Unity=0",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -905,7 +932,6 @@
 					"JucePlugin_Build_Standalone=0",
 					"JucePlugin_Build_Unity=0",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -1003,7 +1029,6 @@
 					"JucePlugin_Build_Unity=0",
 					"JUCE_SHARED_CODE=1",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
 					"/Users/ptumulty/Applications/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
@@ -1047,11 +1072,12 @@
 				CODE_SIGN_IDENTITY = "";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
+				ENABLE_TESTABILITY = NO;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
@@ -1095,10 +1121,12 @@
 				CODE_SIGN_IDENTITY = "";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = NO;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
@@ -1115,18 +1143,6 @@
 				ZERO_LINK = NO;
 			};
 			name = Release;
-		};
-		B7A6F5A6AE15D30EDAFAF886 = {
-			isa = PBXTargetDependency;
-			target = 376182D4FA78072AD5969F1E;
-		};
-		357D67AD575E97DD4A55F94C = {
-			isa = PBXTargetDependency;
-			target = 11F2625F838541E16DBBCB5D;
-		};
-		54563BFD5FD1BC10F4258BA7 = {
-			isa = PBXTargetDependency;
-			target = 214EE4CCCDBE8F9E962F4953;
 		};
 		9EDF744F0CF8883F70EA0BBC = {
 			isa = XCConfigurationList;
@@ -1152,9 +1168,9 @@
 			buildPhases = ( );
 			buildRules = ( );
 			dependencies = (
-				B7A6F5A6AE15D30EDAFAF886,
-				357D67AD575E97DD4A55F94C,
-				54563BFD5FD1BC10F4258BA7,
+				50D6043D7AAA30E22F08E877,
+				5E6E504D3633A4439CE0D359,
+				3B1EA698BF8FCE35F4B75827,
 			);
 			name = "SPIT - All";
 			productName = SPIT;
@@ -1213,7 +1229,7 @@
 			);
 			buildRules = ( );
 			dependencies = (
-				54563BFD5FD1BC10F4258BA7,
+				77E418B0B5A8D135BBE0B246,
 			);
 			name = "SPIT - VST3";
 			productName = SPIT;
@@ -1285,7 +1301,7 @@
 			);
 			buildRules = ( );
 			dependencies = (
-				54563BFD5FD1BC10F4258BA7,
+				BC4D04FF529AD243E92A5E61,
 			);
 			name = "SPIT - AU";
 			productName = SPIT;

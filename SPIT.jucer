@@ -2,7 +2,8 @@
 
 <JUCERPROJECT id="o1X7Hz" name="SPIT" projectType="audioplug" jucerVersion="5.4.7"
               pluginCharacteristicsValue="pluginIsMidiEffectPlugin,pluginProducesMidiOut"
-              pluginVST3Category="Instrument" pluginFormats="buildAU,buildVST3">
+              pluginVST3Category="Instrument" pluginFormats="buildAU,buildVST3"
+              displaySplashScreen="1">
   <MAINGROUP id="ekLXzk" name="SPIT">
     <GROUP id="{44E45934-6F21-56CE-C339-F96A34A1296E}" name="Source">
       <FILE id="g53iva" name="PluginProcessor.cpp" compile="1" resource="0"
